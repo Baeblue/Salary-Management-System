@@ -63,8 +63,8 @@
             <h5>주휴 수당</h5>
           </div>
           <div class="content">
-            <h5>하루 {{ dailyTotalTime }}시간 X {{ days }}일 = 총 {{ weeklyTotalTime }}시간</h5>  <!-- x -->
-            <h5>일급 {{ dailyPay }}원 X {{ days }}일 = <strong style="color: #298861;">{{ basicDailyPay }}원</strong></h5>
+            <h5>하루 {{ dailyTotalTime }}시간 × {{ days }}일 = 총 {{ weeklyTotalTime }}시간</h5>
+            <h5>일급 {{ dailyPay }}원 × {{ days }}일 = <strong style="color: #298861;">{{ basicDailyPay }}원</strong></h5>
             <h5><strong style="color: #298861;">(+) {{ holidayPay }}원</strong></h5>
           </div>
         </div>

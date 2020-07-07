@@ -2,7 +2,7 @@
   <div id="app">
     <div class="home" v-if="home">
       <div class="imageArea">
-        <fade-images :delay="5000" :height="'100%'" :width="'100%'"
+        <fade-images :delay="10000" :height="'100%'" :width="'100%'"
                      :images="images"/>
         <div class="image-cover"></div>
         <div class="subject">
