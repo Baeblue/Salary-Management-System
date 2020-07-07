@@ -1,7 +1,9 @@
 <template>
   <div class="addForm">
     <div v-if="!submitted">
-      <h3>근무 시간 입력하기</h3>
+      <div class="subject">
+        <h3>근무 시간 입력하기</h3>
+      </div>
 
       <div class="hourlyWageForm">
         <label for="hourlyWage">시급</label>
@@ -92,6 +94,14 @@
 
     div {
 
+      .subject {
+        width: 1000px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
       .hourlyWageForm {
 
         padding-top: 50px;
@@ -102,6 +112,10 @@
           min-width: 100px;
           margin: auto;
           text-align: left;
+        }
+
+        .form-control {
+          margin: 8px;
         }
 
       }
@@ -118,6 +132,10 @@
             margin: auto;
             text-align: left;
           }
+
+          .form-control {
+            margin: 8px;
+          }
         }
 
         .endTime {
@@ -130,21 +148,25 @@
             margin: auto;
             text-align: left;
           }
+
+          .form-control {
+            margin: 8px;
+          }
         }
       }
 
       .btn {
-        margin: 50px;
+        margin: 60px;
       }
-    }
-
-    div > .btn{
-      margin: 100px;
     }
 
     .submitted {
       padding-top: 100px;
       min-height: 500px;
+
+      .btn {
+        margin: 100px;
+      }
     }
   }
 </style>
