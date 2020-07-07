@@ -113,8 +113,8 @@
           {src: require("../../front/src/assets/red-pencil.jpg")},
           {src: require("../../front/src/assets/working-people.jpg")},
           {src: require("../../front/src/assets/calculator.jpg")},
-          {src: require("../../front/src/assets/checkcard.jpg")},
           {src: require("../../front/src/assets/bank-book.jpg")},
+          {src: require("../../front/src/assets/checkcard.jpg")},
         ],
         empty: true
       }
