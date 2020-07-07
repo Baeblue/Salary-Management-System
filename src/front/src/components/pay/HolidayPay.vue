@@ -4,15 +4,15 @@
       <h3>주휴수당 계산하기</h3>
     </div>
     <div class="inputForm">
-      <div class="weeklyTotalTimeForm">
-        <label for="weeklyTotalTime">주 근무 시간</label>
-        <input type="text" class="form-control" placeholder="근무 시간 입력" id="weeklyTotalTime"
-               v-model="weeklyTotalTime"/>
-      </div>
       <div class="hourlyWageForm">
         <label for="hourlyWage">시급</label>
         <input type="text" class="form-control" placeholder="최저시급 8,590원" id="hourlyWage"
                v-model="hourlyWage"/>
+      </div>
+      <div class="weeklyTotalTimeForm">
+        <label for="weeklyTotalTime">주 근무 시간</label>
+        <input type="text" class="form-control" placeholder="근무 시간 입력" id="weeklyTotalTime"
+               v-model="weeklyTotalTime"/>
       </div>
     </div>
 
@@ -103,7 +103,7 @@
       min-height: 220px;
       margin: auto;
 
-      .weeklyTotalTimeForm {
+      .hourlyWageForm {
 
         padding-top: 30px;
         display: flex;   // 옆으로 나란히
@@ -120,7 +120,7 @@
         }
       }
 
-      .hourlyWageForm {
+      .weeklyTotalTimeForm {
 
         padding-top: 30px;
         display: flex;   // 옆으로 나란히
