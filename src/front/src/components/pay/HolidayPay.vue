@@ -22,7 +22,23 @@
 
 
     <div class="resultArea" v-show="result">
-      <h5>주휴 수당은 {{ holidayPay }}원입니다.</h5>
+      <div class="text">
+        <div class="cal">
+          <div class="title">
+            <h5>주휴 수당 계산</h5>
+          </div>
+          <div class="content">
+            <h5 v-if="weeklyTotalTime >=15 && weeklyTotalTime < 40">
+              ( <strong style="color: #298861;">{{ weeklyTotalTime }}시간</strong> ÷ 40 ) × 8 × <strong style="color: #298861;">{{ formatHourlyWage }}원</strong>
+            </h5>
+            <h5 v-else-if="weeklyTotalTime >= 40">
+              8 × <strong style="color: #298861;">{{ formatHourlyWage }}원</strong>
+            </h5>
+          </div>
+        </div>
+        <hr style="border: solid 1px gray; margin-top: 0">
+        <h4>예상 주휴 수당은 <b style="color: #e16441;">{{ holidayPay }}원</b>입니다.</h4>
+      </div>
     </div>
   </div>
 </template>
@@ -35,11 +51,14 @@
         result: false,
         weeklyTotalTime: null,
         hourlyWage: null,
+        formatHourlyWage: null,
         holidayPay: 0,
       }
     },
     methods: {
-      calHolidayPay(holidayTime, hourlyWage) {
+      calHolidayPay(weeklyTotalTime, hourlyWage) {
+
+        this.holidayPay = 0;
 
         if(hourlyWage == null) {
           hourlyWage = 8590;
@@ -53,6 +72,8 @@
           this.holidayPay = 8 * hourlyWage;
         }
 
+        //this.hourlyWage = hourlyWage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        this.formatHourlyWage = hourlyWage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         this.holidayPay = this.holidayPay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
         this.result = true;
@@ -77,9 +98,9 @@
     .inputForm {
       justify-content: center;   // 화면 중앙
       text-align: center;
-      padding: 50px 0px;
+      padding-top: 20px;
       max-width: 500px;
-      min-height: 250px;
+      min-height: 220px;
       margin: auto;
 
       .weeklyTotalTimeForm {
@@ -93,6 +114,10 @@
           margin: auto;
           text-align: left;
         }
+
+        .form-control {
+          margin: 8px;
+        }
       }
 
       .hourlyWageForm {
@@ -105,6 +130,10 @@
           min-width: 100px;
           margin: auto;
           text-align: left;
+        }
+
+        .form-control {
+          margin: 8px;
         }
       }
     }
@@ -121,12 +150,42 @@
 
     .resultArea {
       background-color: lightgrey;
-      padding: 5% 5% 5% 15%;
       font-size: large;
       width: 100vw;
       margin: auto;
       align-items: center;
       justify-content: space-between;
+
+      .text {
+        margin: auto;
+        padding: 100px 500px;
+
+        .cal {
+          display: flex;
+
+          .title {
+            width: 500px;
+            text-align: left;
+
+            h5 {
+              margin-bottom: 15px;
+            }
+          }
+
+          .content {
+            width: 500px;
+            text-align: right;
+
+            h5 {
+              margin-bottom: 15px;
+            }
+          }
+        }
+
+        h4 {
+          text-align: right;
+        }
+      }
     }
   }
 

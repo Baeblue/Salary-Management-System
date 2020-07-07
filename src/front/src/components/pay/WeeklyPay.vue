@@ -33,8 +33,8 @@
       </div>
 
       <div class="workingDays">
-        <label>한 주 근무 일수</label>
-        <b-dropdown
+        <label>주 근무 일수</label>
+        <b-dropdown variant="outline-info"
           id="workingDays" class="m-2" required
           :text="selectedDays"
           v-model="days"
@@ -55,10 +55,22 @@
 
 
     <div class="resultArea" v-show="result">
-      <h5>일주일 총 근무시간은 하루 {{ dailyTotalTime }}시간 X {{ days }}일로 총 {{ weeklyTotalTime }}시간입니다.</h5>
-      <h5> - 기본 수당: 일급 {{ dailyPay }}원 X {{ days }}일 = {{ basicDailyPay }}원</h5>
-      <h5> - 주휴 수당: {{ holidayPay }}원</h5>
-      <h5>총 주급은 {{ weeklyPay }}원입니다.</h5>
+      <div class="text">
+        <div class="cal">
+          <div class="title">
+            <h5>일주일 총 근무 시간</h5>
+            <h5>기본 수당</h5>
+            <h5>주휴 수당</h5>
+          </div>
+          <div class="content">
+            <h5>하루 {{ dailyTotalTime }}시간 X {{ days }}일 = 총 {{ weeklyTotalTime }}시간</h5>  <!-- x -->
+            <h5>일급 {{ dailyPay }}원 X {{ days }}일 = <strong style="color: #298861;">{{ basicDailyPay }}원</strong></h5>
+            <h5><strong style="color: #298861;">(+) {{ holidayPay }}원</strong></h5>
+          </div>
+        </div>
+        <hr style="border: solid 1px gray; margin-top: 0">
+        <h4>총 주급은 <b style="color: #e16441;">{{ weeklyPay }}원</b>입니다.</h4>
+      </div>
     </div>
   </div>
 </template>
@@ -202,6 +214,10 @@
           text-align: left;
         }
 
+        .form-control {
+          margin: 8px;
+        }
+
       }
 
       .startTime {
@@ -214,6 +230,10 @@
           margin-left: 0px;
           text-align: left;
         }
+
+        .form-control {
+          margin: 8px;
+        }
       }
 
       .endTime {
@@ -225,6 +245,10 @@
           min-width: 100px;
           margin-left: 0px;
           text-align: left;
+        }
+
+        .form-control {
+          margin: 8px;
         }
       }
 
@@ -240,7 +264,7 @@
         }
 
         .m-2 {
-          margin: 0px;  // 수정 필요
+          //margin: 0px;  // 수정 필요
         }
       }
     }
@@ -257,12 +281,42 @@
 
     .resultArea {
       background-color: lightgrey;
-      padding: 5% 5% 5% 15%;
       font-size: large;
       width: 100vw;
       margin: auto;
       align-items: center;
       justify-content: space-between;
+
+      .text {
+        margin: auto;
+        padding: 100px 500px;
+
+        .cal {
+          display: flex;
+
+          .title {
+            width: 500px;
+            text-align: left;
+
+            h5 {
+              margin-bottom: 15px;
+            }
+          }
+
+          .content {
+            width: 500px;
+            text-align: right;
+
+            h5 {
+              margin-bottom: 15px;
+            }
+          }
+        }
+
+        h4 {
+          text-align: right;
+        }
+      }
     }
   }
 </style>

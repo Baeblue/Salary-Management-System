@@ -39,11 +39,21 @@
 
 
     <div class="resultArea" v-show="result">
-      <div class="area">
-        <h5>주간근무 {{ dayWork }}시간</h5>
-        <h5>야간근무 {{ nightWork }}시간</h5>
-        <h5>하루 총 근무 시간 {{ totalWork }}시간</h5>
-        <h5>총 일급은 {{ dailyPay }}원 입니다.</h5>
+      <div class="text">
+        <div class="cal">
+          <div class="title">
+            <h5>하루 총 근무시간</h5>
+            <h5>주간 근무</h5>
+            <h5>야간 근무</h5>
+          </div>
+          <div class="content">
+            <h5>{{ dailyTotalTime }}시간</h5>
+            <h5>{{ dayTime }}시간 × {{ _hourlyWage }}원 = <strong style="color: #298861;">{{ dayPay }}원</strong></h5>
+            <h5>{{ nightTime }}시간 × ({{ _hourlyWage }}원 × 1.5) = <strong style="color: #298861;">(+) {{ nightPay }}원</strong></h5>
+          </div>
+        </div>
+        <hr style="border: solid 1px gray; margin-top: 0">
+        <h4>총 일급은 <b style="color: #e16441;">{{ dailyPay }}원</b>입니다.</h4>
       </div>
     </div>
   </div>
@@ -56,18 +66,21 @@
       return {
         result: false,
         hourlyWage: null,
+        _hourlyWage: null,
         startTime: "",
         endTime: "",
-        dayWork: 0,
-        nightWork: 0,
-        totalWork: 0,
+        dayTime: 0,
+        dayPay: 0,
+        nightTime: 0,
+        nightPay:0,
+        dailyTotalTime: 0,
         dailyPay: 0
       }
     },
     methods: {
       calWeeklyPay(hourlyWage, startTime, endTime) {
-        this.dayWork = 0;
-        this.nightWork = 0;
+        this.dayTime = 0;
+        this.nightTime = 0;
 
         if(hourlyWage == null) {
           hourlyWage = 8590;
@@ -105,10 +118,10 @@
           if(timeList[i] == Boolean(true)) {
             if(i>=6 && i<=21) {
               timeMap.set(i, hourlyWage);   // 주간 기본 시급
-              this.dayWork++;
+              this.dayTime++;
             } else {
               timeMap.set(i, (hourlyWage*1.5));   // 야간 수당
-              this.nightWork++;
+              this.nightTime++;
             }
           }
         }
@@ -117,8 +130,13 @@
         timeMap.forEach(function (value) {
           sum += value;
         });
-        this.totalWork = (this.dayWork + this.nightWork);
-        this.dailyPay = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");;
+        this.dailyTotalTime = (this.dayTime + this.nightTime);
+        this.dayPay = this.dayTime * hourlyWage;
+        this.nightPay = this.nightTime * (hourlyWage * 1.5);
+        this._hourlyWage = hourlyWage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        this.dayPay = this.dayPay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        this.nightPay = this.nightPay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        this.dailyPay = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         this.result = true;
       },
     }
@@ -197,20 +215,41 @@
 
     .resultArea {
       background-color: lightgrey;
-      padding: 5% 5% 5% 15%;
       font-size: large;
       width: 100vw;
       margin: auto;
       align-items: center;
       justify-content: space-between;
 
-      .area {
-        width: 500px;
-        margin-left: 30px;
-        font-size: 30px;
-        background-color: transparent;
-        border: 2px white solid;
-        padding: 10px;
+      .text {
+        margin: auto;
+        padding: 100px 500px;
+
+        .cal {
+          display: flex;
+
+          .title {
+            width: 500px;
+            text-align: left;
+
+            h5 {
+              margin-bottom: 15px;
+            }
+          }
+
+          .content {
+            width: 500px;
+            text-align: right;
+
+            h5 {
+              margin-bottom: 15px;
+            }
+          }
+        }
+
+        h4 {
+          text-align: right;
+        }
       }
     }
   }

@@ -33,15 +33,29 @@
       </div>
 
       <div class="workingDays">
-        <label for="quantity">월 근무 일수</label>
-        <div>
-          <input type="number" id="quantity" name="quantity" min="1" max="31"
-                 placeholder="근무 일수 입력"
-                 class="form-control"
-                 v-model="days">
-          <p>※ 1부터 31까지만 입력됩니다.</p>
-        </div>
+        <label>월 근무 일수</label>    <!-- 여기 32 이상도 입력됨 -->
+<!--        <div>                                        &lt;!&ndash; 둘 중 하나 선택하기 &ndash;&gt;-->
+<!--          <input type="number" id="quantity" name="quantity" min="1" max="31"-->
+<!--                 placeholder="근무 일수 선택"-->
+<!--                 class="form-control"-->
+<!--                 v-model="days">                    &lt;!&ndash; v-on:keyup="numberRange(days)" v-bind &ndash;&gt;-->
+<!--          <p>※ 1부터 31까지만 입력됩니다.</p>-->
+<!--        </div>-->
+        <b-dropdown variant="outline-info"
+          id="workingDays" class="m-2" required
+          :text="selectedDays"
+          v-model="days"
+        >
+          <b-dropdown-item
+            v-for="days in daysList" :key="days.id"
+            @click="selectDays(days)"
+          >
+            {{ days }}
+          </b-dropdown-item>
+        </b-dropdown>
       </div>
+
+
     </div>
 
     <div class="btnArea">
@@ -49,10 +63,22 @@
     </div>
 
     <div class="resultArea" v-show="result">
-      <h5>월 총 근무시간은 하루 {{ dailyTotalTime }}시간 X {{ days }}일로 총 {{ monthlyTotalTime }}시간입니다.</h5>
-      <h5> - 기본 수당: 일급 {{ dailyPay }}원 X {{ days }}일 = {{ basicDailyPay }}원</h5>
-      <h5> - 예상 주휴 수당: 한 주 주휴수당 {{ holidayPay }}원 X 4주 = {{ holidayTotalPay }}원</h5>
-      <h5>총 예상 월급은 {{ monthlyPay }}원입니다.</h5>
+      <div class="text">
+        <div class="cal">
+          <div class="title">
+            <h5>월 총 근무 시간</h5>
+            <h5>기본 수당</h5>
+            <h5>예상 주휴 수당</h5>
+          </div>
+          <div class="content">
+            <h5>하루 {{ dailyTotalTime }}시간 X {{ days }}일 = 총 {{ monthlyTotalTime }}시간</h5>
+            <h5>일급 {{ dailyPay }}원 X {{ days }}일 = <strong style="color: #298861;">{{ basicDailyPay }}원</strong></h5>
+            <h5>한 주 주휴수당 {{ holidayPay }}원 X 4주 = <strong style="color: #298861;">(+) {{ holidayTotalPay }}원</strong></h5>
+          </div>
+        </div>
+        <hr style="border: solid 1px gray; margin-top: 0">
+        <h4>총 예상 월급은 <b style="color: #e16441;">{{ monthlyPay }}원</b>입니다.</h4>
+      </div>
     </div>
   </div>
 </template>
@@ -75,9 +101,22 @@
         basicDailyPay: 0,
         holidayPay: 0,
         holidayTotalPay: 0,
+        selectedDays: '근무 일수 선택',
+        daysList: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15',
+          '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
       }
     },
     methods: {
+      selectDays(selectedItem) {
+        this.selectedDays = selectedItem;
+        this.days = this.selectedDays;
+      },
+      numberRange(days) {
+        if(!(days >= 1 && days <=31)) {
+          days = 31;
+        }
+        return days;
+      },
       calMonthlyPay(hourlyWage, startTime, endTime, days) {
         this.dailyTotalTime = 0;
 
@@ -185,6 +224,10 @@
           text-align: left;
         }
 
+        .form-control {
+          margin: 8px;
+        }
+
       }
 
       .startTime {
@@ -196,6 +239,10 @@
           min-width: 100px;
           margin-left: 0px;
           text-align: left;
+        }
+
+        .form-control {
+          margin: 8px;
         }
       }
 
@@ -209,6 +256,10 @@
           margin-left: 0px;
           text-align: left;
         }
+
+        .form-control {
+          margin: 8px;
+        }
       }
 
       .workingDays {
@@ -221,6 +272,17 @@
           margin-left: 0px;
           text-align: left;
         }
+
+        /*.m-2 > .dropdown-menu show {*/
+        /*  height: 230px;*/
+        /*  overflow-y: scroll;*/
+        /*}*/
+
+        /*.m-2 .dropdown-menu {*/
+        /*  //margin: 0px;  // 수정 필요*/
+        /*  height: 10px;*/
+        /*  overflow-y: scroll;*/
+        /*}*/
 
         div > p {
           font-size: small;
@@ -245,12 +307,42 @@
 
     .resultArea {
       background-color: lightgrey;
-      padding: 5% 5% 5% 15%;
       font-size: large;
       width: 100vw;
       margin: auto;
       align-items: center;
       justify-content: space-between;
+
+      .text {
+        margin: auto;
+        padding: 100px 500px;
+
+        .cal {
+          display: flex;
+
+          .title {
+            width: 500px;
+            text-align: left;
+
+            h5 {
+              margin-bottom: 15px;
+            }
+          }
+
+          .content {
+            width: 500px;
+            text-align: right;
+
+            h5 {
+              margin-bottom: 15px;
+            }
+          }
+        }
+
+        h4 {
+          text-align: right;
+        }
+      }
     }
   }
 
