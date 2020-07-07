@@ -70,7 +70,6 @@
 
 <script>
   import HeaderComponent from "./components/HeaderComponent";
-  import FooterComponent from "./components/FooterComponent";
   import SalaryList from "./components/SalaryList";
   import AddSalary from "./components/AddSalary";
   import DailyPay from "./components/pay/DailyPay";
@@ -128,7 +127,6 @@
     router,
     components: {
       HeaderComponent,
-      FooterComponent,
       SalaryList,
       AddSalary,
       DailyPay,
