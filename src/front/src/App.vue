@@ -109,11 +109,11 @@
         key: 0,
         home: true,
         images: [   // ----- 사진 고르기 -----
-          {src: require("../../front/src/assets/red-pencil.jpg")},
-          {src: require("../../front/src/assets/working-people.jpg")},
-          {src: require("../../front/src/assets/calculator.jpg")},
-          {src: require("../../front/src/assets/bank-book.jpg")},
-          {src: require("../../front/src/assets/checkcard.jpg")},
+          {src: require("./assets/images/red-pencil.jpg")},
+          {src: require("./assets/images/working-people.jpg")},
+          {src: require("./assets/images/calculator.jpg")},
+          {src: require("./assets/images/bank-book.jpg")},
+          {src: require("./assets/images/checkcard.jpg")},
         ],
         empty: true
       }
