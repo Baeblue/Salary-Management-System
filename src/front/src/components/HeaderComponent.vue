@@ -1,23 +1,23 @@
 <template>
   <div class="headerComponent">
     <div class="subject">
-      <h1>급여 관리 시스템</h1>
+      <h1><b>급여 계산기</b></h1>
     </div>
     <nav>
       <div @click="refreshRouterView()">
-        <router-link class="btn btn-primary" to="/list">일급 목록</router-link>
+        <router-link class="btn btn-primary" to="/list"><h4>일급 목록</h4></router-link>
       </div>
       <div @click="refreshRouterView()">
-        <router-link class="btn btn-primary" to="/daily">일급 계산하기</router-link>
+        <router-link class="btn btn-primary" to="/daily"><h4>일급 계산하기</h4></router-link>
       </div>
       <div @click="refreshRouterView()">
-        <router-link class="btn btn-primary" to="/weekly">주급 계산하기</router-link>
+        <router-link class="btn btn-primary" to="/weekly"><h4>주급 계산하기</h4></router-link>
       </div>
       <div @click="refreshRouterView()">
-        <router-link class="btn btn-primary" to="/monthly">월급 계산하기</router-link>
+        <router-link class="btn btn-primary" to="/monthly"><h4>월급 계산하기</h4></router-link>
       </div>
       <div @click="refreshRouterView()">
-        <router-link class="btn btn-primary" to="/holiday">주휴수당 계산하기</router-link>
+        <router-link class="btn btn-primary" to="/holiday"><h4>주휴수당 계산하기</h4></router-link>
       </div>
     </nav>
   </div>
@@ -42,14 +42,14 @@
   .headerComponent {
     min-width: 1000px;
     height: 350px;
-    background-color: #A5D6A7; // rgba(28, 74, 115, 0.31); rgba(84, 180, 149, 0.51);
+    background-color: #A5D6A7;
 
     .subject {
-      color: white;
+      height: 250px;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 250px;
+      color: white;
     }
 
     nav {
@@ -58,12 +58,18 @@
       align-items: center;
 
       .btn {
+        width: 230px;
+        height: 50px;
         margin: 5px;
-        width: 200px;
-        text-align: center;
-        font-size: 20px;
+        padding-top: 10px;
         background-color: transparent;
         border: 1px white solid;
+        text-align: center;
+        font-size: 20px;
+
+        h4 {
+          margin-bottom: 0;
+        }
       }
     }
   }

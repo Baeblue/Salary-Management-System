@@ -39,33 +39,34 @@
         </div>
       </div>
     </div>
+
     <div class="list">
       <h6>※ 22:00 ~ 06:00 사이 근무 시, 야간수당(시급의 1.5배)이 적용됩니다.</h6>
       <table>
         <thead>
-        <tr>
-          <th class="date">날짜</th>
-          <th class="startTime">시작 시간</th>
-          <th class="endTime">종료 시간</th>
-          <th class="totalTime">근무 시간</th>
-          <th class="hourlyWage">시급</th>
-          <th class="dailyWage">일급</th>
-          <th class="edit">삭제</th>
-        </tr>
+          <tr>
+            <th class="date">날짜</th>
+            <th class="startTime">시작 시간</th>
+            <th class="endTime">종료 시간</th>
+            <th class="totalTime">근무 시간</th>
+            <th class="hourlyWage">시급</th>
+            <th class="dailyWage">일급</th>
+            <th class="edit">삭제</th>
+          </tr>
         </thead>
 
         <tbody>
-        <tr v-for="daily in salary" :key="daily.id">
-          <td>{{ formatDate(new Date(daily.date)) }}</td>
-          <td>{{ daily.startTime }}</td>
-          <td>{{ daily.endTime }}</td>
-          <td>{{ daily.totalTime }}시간</td>
-          <td>{{ formatWage(daily.hourlyWage) }}원</td>
-          <td><h5>{{ formatWage(daily.dailyWage) }}원</h5></td>
-          <td>
-            <button @click="deleteRow(daily.id)" class="btn btn-danger"><h4>&#x00D7;</h4></button>
-          </td>
-        </tr>
+          <tr v-for="daily in salary" :key="daily.id">
+            <td>{{ formatDate(new Date(daily.date)) }}</td>
+            <td>{{ daily.startTime }}</td>
+            <td>{{ daily.endTime }}</td>
+            <td>{{ daily.totalTime }}시간</td>
+            <td>{{ formatWage(daily.hourlyWage) }}원</td>
+            <td><h5>{{ formatWage(daily.dailyWage) }}원</h5></td>
+            <td>
+              <button @click="deleteRow(daily.id)" class="btn btn-danger"><h4>&#x00D7;</h4></button>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -126,10 +127,13 @@
           month: this.selectedDate.month
         };
 
-        ApiSvc.post("/list", requestData)   // PostMapping 수정
+        // Controller의 PostMapping을 axios로 받음
+        ApiSvc.post("/list", requestData)
+          // then문에서 salary list를 받음
           .then(res => {
             this.salary = res.data;
 
+            // 일급 데이터만 map으로 모아 reduce로 중첩적으로 더함
             this.dailyTotal = res.data
               .map(obj => obj.dailyWage)
               .reduce((d1, d2) => d1 + d2, 0)
@@ -180,18 +184,13 @@
 <style lang="scss" scoped>
 
   .salaryList {
-    margin: 100px;
     min-height: 300px;
+    margin: 100px;
 
     .header {
       width: 60%;
       margin: auto;
       display: flex;
-      //text-align: center;
-      //align-items: center;
-      //justify-content: space-between;
-      //justify-content: center;
-      //margin-right: 0px;
 
       .total {
         width: 420px;
@@ -205,33 +204,26 @@
         width: 290px;
         right: 0px;
         text-align: right;
-        //float: right;
-        //display: flex;
-        //justify-content: flex-end;
 
         .input {
           margin-bottom: 8px;
-          //margin-left: 180px;
         }
 
         .search {
-          border-top: 2px solid #168;
           display: flex;
           align-items: center;
+          border-top: 2px solid #168;
 
           b-dropdown {
             .m-2 {
               width: 70px;
-              //margin: 3px 0px 0px 3px;
             }
           }
+          
           .btn {
-            //font-size: 18px;
             width: 75px;
             margin-left: 7px;
           }
-          //justify-content: right;
-          //text-align: right;
         }
       }
     }
@@ -240,24 +232,24 @@
       padding-top: 50px;
 
       h6 {
+        width: 1200px;
+        margin: 3px auto;
         text-align: right;
         color: red;
-        margin: 3px auto;
-        width: 1200px;
       }
 
       table {
+        width: 1200px;
+        margin: auto;
         border-collapse: collapse;
         border-top: 3px solid #168;
-        margin: auto;
         font-size: 20px;
-        width: 1200px;
 
         tr th {
-          color: #168;
+          height: 50px;
           background: #f0f6f9;
           text-align: center;
-          height: 50px;
+          color: #168;
         }
 
         tr:nth-child(even) {
@@ -269,27 +261,27 @@
         }
 
         tr td {
-          text-align: center;
           height: 50px;
+          text-align: center;
 
           h5 {
             margin-bottom: 0;
-            color: #298861;
             font-weight: bold;
+            color: #298861;
           }
 
           .btn {
             width: 40px;
-            background-color: #ff6a46;
-            border: #ff6a46;
             margin: 0;
             padding: 3px;
+            background-color: #ff6a46;
+            border: #ff6a46;
 
             h4 {
-              color: white;
               margin: 0;
               padding: 0;
               align-items: center;
+              color: white;
             }
           }
         }

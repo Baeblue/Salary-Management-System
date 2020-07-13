@@ -99,7 +99,6 @@ public class Salary {
         }
 
         dailyWage = timeMap.values().stream().reduce(0, Integer::sum);
-
         return dailyWage;
     }
 

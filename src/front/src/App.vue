@@ -108,7 +108,7 @@
       return {
         key: 0,
         home: true,
-        images: [   // ----- 사진 고르기 -----
+        images: [
           {src: require("./assets/images/red-pencil.jpg")},
           {src: require("./assets/images/working-people.jpg")},
           {src: require("./assets/images/calculator.jpg")},
@@ -149,29 +149,29 @@
     font-family: 'NanumSquare', sans-serif;
 
     .home {
-      overflow-x: hidden;
       position: relative;
+      overflow-x: hidden;
 
       .imageArea {
+        position: relative;
         width: 100vw;
         height: 100vh;
         background-repeat: no-repeat;
         background-position: center center;
-        position: relative;
 
         .image-cover {
+          position: absolute;
           width: 100%;
           height: 100%;
           background-color: rgba(155, 114, 41, 0.31);
-          position: absolute;
           z-index: 1;
         }
 
         .subject {
+          position: absolute;
           width: 100%;
           height: 100%;
           text-align: center;
-          position: absolute;
           z-index: 2;
 
           h1 {
@@ -193,9 +193,9 @@
       }
 
       .intro {
-        background-color: rgba(253, 199, 67, 0.57);
         padding: 120px 60px;
         align-items: center;
+        background-color: rgba(253, 199, 67, 0.57);
         text-align: center;
 
         .boxes {
@@ -230,14 +230,14 @@
 
       .footer {
         height: 170px;
-        background-color: #123f5a;
         padding: 40px;
+        background-color: #123f5a;
 
         h4 {
           margin: 0;
           padding: 30px;
-          color: white;
           text-align: right;
+          color: white;
         }
       }
     }
@@ -250,14 +250,14 @@
 
       .footer {
         height: 170px;
-        background-color: #123f5a;
         padding: 40px;
+        background-color: #123f5a;
 
         h4 {
           margin: 0;
           padding: 30px;
-          color: white;
           text-align: right;
+          color: white;
         }
       }
     }

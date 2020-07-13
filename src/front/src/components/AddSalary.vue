@@ -103,14 +103,12 @@
       }
 
       .inputForm {
-
-        justify-content: center;   // 화면 중앙
-        text-align: center;
         max-width: 500px;
         margin: auto;
+        justify-content: center;   // 화면 중앙
+        text-align: center;
 
         .hourlyWageForm {
-
           padding-top: 50px;
           display: flex;   // 옆으로 나란히
           align-items: center;   // 위아래 중앙
@@ -124,7 +122,6 @@
           .form-control {
             margin: 8px;
           }
-
         }
 
         .dateTimePicker {
@@ -164,24 +161,23 @@
       }
 
       .btnArea {
+        width: 100px;
+        margin: 0 auto;
         padding-top: 50px;
         padding-bottom: 50px;
         display: flex;
-
-        width: 100px;
         justify-content: center;
         font-size: 18px;
-        margin: 0 auto;
       }
     }
 
     .submitted {
-      justify-content: center;   // 화면 중앙
-      text-align: center;
       max-width: 500px;
       height: 400px;
       margin: auto;
       padding-top: 50px;
+      justify-content: center;
+      text-align: center;
 
       .btn {
         margin: 100px;

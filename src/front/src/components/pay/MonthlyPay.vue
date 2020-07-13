@@ -15,9 +15,9 @@
         <datetime type="time" id="startTime" placeholder="시간 선택"
                   value-zone="Asia/Seoul"
                   :minute-step="60"
-                  :input-style="'width: 375px; border: transparent'"
+                  :input-style="'width: 350px; border: transparent'"
                   class="form-control"
-                  v-model="startTime">  <!--class="theme-orange"-->
+                  v-model="startTime">
         </datetime>
       </div>
 
@@ -26,21 +26,14 @@
         <datetime type="time" id="endTime" placeholder="시간 선택"
                   value-zone="Asia/Seoul"
                   :minute-step="60"
-                  :input-style="'width: 375px; border: transparent'"
+                  :input-style="'width: 350px; border: transparent'"
                   class="form-control"
                   v-model="endTime">
         </datetime>
       </div>
 
       <div class="workingDays">
-        <label>월 근무 일수</label>    <!-- 여기 32 이상도 입력됨 -->
-<!--        <div>                                        &lt;!&ndash; 둘 중 하나 선택하기 &ndash;&gt;-->
-<!--          <input type="number" id="quantity" name="quantity" min="1" max="31"-->
-<!--                 placeholder="근무 일수 선택"-->
-<!--                 class="form-control"-->
-<!--                 v-model="days">                    &lt;!&ndash; v-on:keyup="numberRange(days)" v-bind &ndash;&gt;-->
-<!--          <p>※ 1부터 31까지만 입력됩니다.</p>-->
-<!--        </div>-->
+        <label>월 근무 일수</label>
         <b-dropdown variant="outline-info"
           id="workingDays" class="m-2" required
           :text="selectedDays"
@@ -54,8 +47,6 @@
           </b-dropdown-item>
         </b-dropdown>
       </div>
-
-
     </div>
 
     <div class="btnArea">
@@ -111,12 +102,6 @@
         this.selectedDays = selectedItem;
         this.days = this.selectedDays;
       },
-      numberRange(days) {
-        if(!(days >= 1 && days <=31)) {
-          days = 31;
-        }
-        return days;
-      },
       calMonthlyPay(hourlyWage, startTime, endTime, days) {
         this.dailyTotalTime = 0;
 
@@ -168,7 +153,6 @@
         });
         this.dailyPay = sum;
         this.weeklyTotalTime = this.dailyTotalTime * parseInt(days/4);
-        console.log("주 총 근무시간: " + this.weeklyTotalTime);
         this.monthlyTotalTime = this.dailyTotalTime * days;
         this.basicDailyPay = this.dailyPay * days;
 
@@ -177,9 +161,9 @@
         } else if(this.weeklyTotalTime >= 40) {
           this.holidayPay = 8 * hourlyWage;
         }
-        console.log("한 주 주휴수당: " + this.holidayPay);
         this.monthlyPay = this.basicDailyPay + (this.holidayPay*4);
         this.holidayTotalPay = this.holidayPay * 4;
+
         this.dailyPay = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         this.basicDailyPay = this.basicDailyPay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         this.holidayPay = this.holidayPay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -206,17 +190,15 @@
     }
 
     .inputForm {
-
-      justify-content: center;   // 화면 중앙
-      text-align: center;
       max-width: 500px;
       margin: auto;
+      justify-content: center;
+      text-align: center;
 
       .hourlyWageForm {
-
         padding-top: 30px;
-        display: flex;   // 옆으로 나란히
-        align-items: center;   // 위아래 중앙
+        display: flex;
+        align-items: center;
 
         label {
           min-width: 100px;
@@ -227,7 +209,6 @@
         .form-control {
           margin: 8px;
         }
-
       }
 
       .startTime {
@@ -273,45 +254,33 @@
           text-align: left;
         }
 
-        /*.m-2 > .dropdown-menu show {*/
-        /*  height: 230px;*/
-        /*  overflow-y: scroll;*/
-        /*}*/
-
-        /*.m-2 .dropdown-menu {*/
-        /*  //margin: 0px;  // 수정 필요*/
-        /*  height: 10px;*/
-        /*  overflow-y: scroll;*/
-        /*}*/
-
         div > p {
-          font-size: small;
-          text-align: left;
-          color: red;
-          margin: 3px auto;
           width: 402px;
-
+          margin: 3px auto;
+          text-align: left;
+          font-size: small;
+          color: red;
         }
       }
     }
 
     .btnArea {
+      width: 100px;
+      margin: 0 auto;
       padding-top: 50px;
       padding-bottom: 50px;
       display: flex;
-      width: 100px;
       justify-content: center;
       font-size: 18px;
-      margin: 0 auto;
     }
 
     .resultArea {
-      background-color: lightgrey;
-      font-size: large;
       width: 100vw;
       margin: auto;
+      background-color: lightgrey;
       align-items: center;
       justify-content: space-between;
+      font-size: large;
 
       .text {
         margin: auto;
@@ -345,5 +314,4 @@
       }
     }
   }
-
 </style>

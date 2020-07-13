@@ -29,7 +29,8 @@
           </div>
           <div class="content">
             <h5 v-if="weeklyTotalTime >=15 && weeklyTotalTime < 40">
-              ( <strong style="color: #298861;">{{ weeklyTotalTime }}시간</strong> ÷ 40 ) × 8 × <strong style="color: #298861;">{{ formatHourlyWage }}원</strong>
+              ( <strong style="color: #298861;">{{ weeklyTotalTime }}시간</strong> ÷ 40 ) × 8 × <strong style="color: #298861;">
+              {{ formatHourlyWage }}원</strong>
             </h5>
             <h5 v-else-if="weeklyTotalTime >= 40">
               8 × <strong style="color: #298861;">{{ formatHourlyWage }}원</strong>
@@ -57,7 +58,6 @@
     },
     methods: {
       calHolidayPay(weeklyTotalTime, hourlyWage) {
-
         this.holidayPay = 0;
 
         if(hourlyWage == null) {
@@ -72,7 +72,6 @@
           this.holidayPay = 8 * hourlyWage;
         }
 
-        //this.hourlyWage = hourlyWage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         this.formatHourlyWage = hourlyWage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         this.holidayPay = this.holidayPay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
@@ -96,18 +95,17 @@
     }
 
     .inputForm {
-      justify-content: center;   // 화면 중앙
-      text-align: center;
-      padding-top: 20px;
       max-width: 500px;
       min-height: 220px;
       margin: auto;
+      padding-top: 20px;
+      justify-content: center;
+      text-align: center;
 
       .hourlyWageForm {
-
         padding-top: 30px;
-        display: flex;   // 옆으로 나란히
-        align-items: center;   // 위아래 중앙
+        display: flex;
+        align-items: center;
 
         label {
           min-width: 100px;
@@ -123,8 +121,8 @@
       .weeklyTotalTimeForm {
 
         padding-top: 30px;
-        display: flex;   // 옆으로 나란히
-        align-items: center;   // 위아래 중앙
+        display: flex;
+        align-items: center;
 
         label {
           min-width: 100px;
@@ -139,22 +137,22 @@
     }
 
     .btnArea {
+      width: 100px;
+      margin: 0 auto;
       padding-top: 50px;
       padding-bottom: 50px;
       display: flex;
-      width: 100px;
       justify-content: center;
       font-size: 18px;
-      margin: 0 auto;
     }
 
     .resultArea {
-      background-color: lightgrey;
-      font-size: large;
       width: 100vw;
       margin: auto;
+      background-color: lightgrey;
       align-items: center;
       justify-content: space-between;
+      font-size: large;
 
       .text {
         margin: auto;
@@ -188,5 +186,4 @@
       }
     }
   }
-
 </style>

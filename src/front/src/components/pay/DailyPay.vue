@@ -133,10 +133,12 @@
         this.dailyTotalTime = (this.dayTime + this.nightTime);
         this.dayPay = this.dayTime * hourlyWage;
         this.nightPay = this.nightTime * (hourlyWage * 1.5);
+
         this._hourlyWage = hourlyWage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         this.dayPay = this.dayPay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         this.nightPay = this.nightPay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         this.dailyPay = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
         this.result = true;
       },
     }
@@ -157,24 +159,21 @@
     }
 
     .inputForm {
-
-      justify-content: center;   // 화면 중앙
-      text-align: center;
       max-width: 500px;
       margin: auto;
+      justify-content: center;
+      text-align: center;
 
       .hourlyWageForm {
-
         padding-top: 50px;
-        display: flex;   // 옆으로 나란히
-        align-items: center;   // 위아래 중앙
+        display: flex;
+        align-items: center;
 
         label {
           min-width: 100px;
           margin-left: 0px;
           text-align: left;
         }
-
       }
 
       .startTime {
@@ -203,23 +202,22 @@
     }
 
     .btnArea {
+      width: 100px;
+      margin: 0 auto;
       padding-top: 50px;
       padding-bottom: 50px;
       display: flex;
-
-      width: 100px;
       justify-content: center;
       font-size: 18px;
-      margin: 0 auto;
     }
 
     .resultArea {
-      background-color: lightgrey;
-      font-size: large;
       width: 100vw;
       margin: auto;
+      background-color: lightgrey;
       align-items: center;
       justify-content: space-between;
+      font-size: large;
 
       .text {
         margin: auto;
