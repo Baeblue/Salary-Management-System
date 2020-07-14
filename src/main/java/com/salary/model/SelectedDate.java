@@ -1,4 +1,4 @@
-package com.example.model;
+package com.salary.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

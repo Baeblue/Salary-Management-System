@@ -1,8 +1,8 @@
-package com.example.controller;
+package com.salary.controller;
 
-import com.example.model.Salary;
-import com.example.model.SelectedDate;
-import com.example.repository.SalaryRepository;
+import com.salary.model.Salary;
+import com.salary.model.SelectedDate;
+import com.salary.repository.SalaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

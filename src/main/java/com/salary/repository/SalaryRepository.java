@@ -1,6 +1,6 @@
-package com.example.repository;
+package com.salary.repository;
 
-import com.example.model.Salary;
+import com.salary.model.Salary;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 

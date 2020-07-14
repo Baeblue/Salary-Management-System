@@ -1,6 +1,5 @@
-package com.example.controller;
+package com.salary.controller;
 
-import com.example.model.Salary;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
